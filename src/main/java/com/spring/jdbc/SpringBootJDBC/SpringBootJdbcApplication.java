@@ -67,5 +67,9 @@ public class SpringBootJdbcApplication implements CommandLineRunner {
 
 		//DELETE
 		repo.deletePlayerById(2);
+
+		//get
+//		repo.getAllPlayers();
+		System.out.println("hello  : "+ repo.getAllPlayers());
 	}
 }

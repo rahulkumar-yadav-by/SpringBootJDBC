@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity                //RowMapping (Create database/schema)
+@NamedQuery(name="get_all_players",query = "SELECT p FROM Player p")
 @Table(name="Player") //give the table name
 public class Player {
 
