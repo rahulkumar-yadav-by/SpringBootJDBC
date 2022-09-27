@@ -1,13 +1,26 @@
-package com.spring.jdbc.SpringBootJDBC;
+package com.spring.jdbc.SpringBootJDBC.Entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity                //RowMapping (Create database/schema)
+@Table(name="Player") //give the table name
 public class Player {
-    private int ID;
+
+    @Id
+    @GeneratedValue
+
+    private int ID;  //auto generated id value on new row insertion
+
+    @Column(name="Name")
     private String name;
+    @Column(name="Age")
     private int age;
+    @Column(name="Nationality")
     private String nationality;
+    @Column(name="DOB")
     private Date dob;
+    @Column(name="Destination")
     private int designation;
 
     public Player(){}
@@ -20,6 +33,15 @@ public class Player {
         this.dob = dob;
         this.designation = designation;
     }
+    public Player( String name, int age, String nationality, Date dob, int designation) {
+        this.name = name;
+        this.age = age;
+        this.nationality = nationality;
+        this.dob = dob;
+        this.designation = designation;
+    }
+
+
 
     public int getID() {
         return ID;
