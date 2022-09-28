@@ -9,8 +9,8 @@ import java.util.Date;
 public class Player {
 
     @Id
-    @GeneratedValue
-
+//    @GeneratedValue
+    @Column(name = "id")
     private int ID;  //auto generated id value on new row insertion
 
     @Column(name="Name")
