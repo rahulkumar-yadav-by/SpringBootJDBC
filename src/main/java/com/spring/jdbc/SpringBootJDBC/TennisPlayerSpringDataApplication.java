@@ -1,7 +1,7 @@
 package com.spring.jdbc.SpringBootJDBC;
 
 import com.spring.jdbc.SpringBootJDBC.Entity.Player;
-import com.spring.jdbc.SpringBootJDBC.Repository.PlayerSpringRepository;
+import com.spring.jdbc.SpringBootJDBC.Repository.PlayerSpringDataRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ import java.sql.Date;
 @SpringBootApplication
 public class TennisPlayerSpringDataApplication implements CommandLineRunner {
     @Autowired
-    PlayerSpringRepository repo;
+    PlayerSpringDataRepository repo;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     public static void main(String[] args) {
         SpringApplication.run(TennisPlayerSpringDataApplication.class, args);
