@@ -55,5 +55,15 @@ public class PlayerController {
         return service.patchPlayerById(id, playerPatch);
     }
 
+    //updating with query(only for nationality)
+    @PatchMapping("/patchPlayer/{id}/nationality")
+    public void patchNationality(@PathVariable int id, @RequestBody String nationality){
+        service.updateNationality(id,nationality);
+    }
 
+    //delete player
+    @DeleteMapping("/deletePlayer/{id}")
+    public void deletePlayer(@PathVariable int id){
+        service.deletePlayer(id);
+    }
 }

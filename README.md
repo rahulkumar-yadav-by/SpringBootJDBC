@@ -84,7 +84,8 @@ HTTP Methods
 POST => CREATING A RESOURCE => h2Database testdb
 GET => READING A RESOURCE => h2Database:testdb
 PUT => UPDATING A RESOURCE => h2Database:testdb
-DELETE => DELETING A RESOURCE=> h2Database:testdb
+DELETE => DELETING A RESOURCE=> h2Database:testdb --todo
+PATCH => UPDATING CERTAIN ATTRIBUTE(S) of a resource
 //*************************
 
 REST APPS
@@ -96,3 +97,7 @@ JSON DATA BINDING
 => different apps exchange data
 
 => Jackson Dependency => POJO(Plain Old Java Object) => Converted => JSON Data Binding
+
+//********************
+
+EXCEPTION HANDLING IMG ->[https://drive.google.com/file/d/1EoTugnH8_29jMweFOvcLHZgYi3zc7GsD/view?usp=sharing]() ]

@@ -1,5 +1,6 @@
 package com.spring.jdbc.SpringBootJDBC.ServiceLayer;
 
+import com.spring.jdbc.SpringBootJDBC.ErrorResponse.PlayerNotFoundException;
 import com.spring.jdbc.SpringBootJDBC.Repository.PlayerRepository;
 import com.spring.jdbc.SpringBootJDBC.Entity.Player;
 import com.spring.jdbc.SpringBootJDBC.Repository.PlayerSpringDataRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.transaction.Transactional;
 import java.lang.reflect.Field;
 import java.sql.Date;
 import java.util.*;
@@ -34,7 +36,8 @@ public class PlayerService {
 
         if(tempPlayer.isPresent()) p=tempPlayer.get();
         else {
-            throw new RuntimeException("Player with ID "+id+ " not found");
+//            throw new RuntimeException("Player with ID "+id+ " not found");
+            throw new PlayerNotFoundException("Player with ID "+id+ " not found");
         }
         return p;
     }
@@ -48,12 +51,14 @@ public class PlayerService {
     public Player updatePlayerById(@PathVariable("id") int id,Player player){
         Optional<Player>tempPlayer=repo.findById(id);
 
-        if(tempPlayer.isEmpty())  throw new RuntimeException("Player with ID "+id+ " not found");
+//        if(tempPlayer.isEmpty())  throw new RuntimeException("Player with ID "+id+ " not found");
+        if(tempPlayer.isEmpty())  throw new PlayerNotFoundException("Player with ID "+id+ " not found");
+
 
         return repo.save(player);
     }
 
-    //Update Partial Player
+    //Update Partial Player(Patch)
     public Player patchPlayerById(@PathVariable("id") int id, Map<String, Object> partialPlayer){
         Optional<Player> tempPlayer = repo.findById(id);// just to capture null pointer exception if present
 
@@ -74,10 +79,33 @@ public class PlayerService {
             });
         }
         else{
-            throw new RuntimeException("Player with id : "+id+" not found ");
+//            throw new RuntimeException("Player with id : "+id+" not found ");
+            throw new PlayerNotFoundException("Player with ID "+id+ " not found");
+
         }
         return repo.save(tempPlayer.get());
     }
+
+
+    //Partial Update using Queries
+    @Transactional
+    public void updateNationality(int id, String nationality){
+        Optional<Player>tempPlayer=repo.findById(id);
+//        if(tempPlayer.isEmpty())  throw new RuntimeException("Player with ID "+id+ " not found");
+        if(tempPlayer.isEmpty())  throw new PlayerNotFoundException("Player with ID "+id+ " not found");
+
+        repo.updateNationality(id,nationality);
+    }
+
+    //delete operation
+    public void deletePlayer(int id){
+        Optional<Player>tempPlayer=repo.findById(id);
+//        if(tempPlayer.isEmpty())  throw new RuntimeException("Player with ID "+id+ " not found");
+        if(tempPlayer.isEmpty())  throw new PlayerNotFoundException("Player with ID "+id+ " not found");
+
+        repo.delete(tempPlayer.get());
+    }
+
 
 
 }
